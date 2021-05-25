@@ -25,7 +25,7 @@ function generatePassword() {
   // question 1: how many characters?
   var width = prompt("Choose a password length between 8 and 128 characters.");
   // must be between 8 and 128 characters
-  while(width < 8 || width > 128){
+  while (width < 8 || width > 128){
     // if not within range, this alert pops up
     alert("Password length must be between 8 and 128 characters.");
     // prompting this question to be resent.
@@ -79,36 +79,35 @@ function generatePassword() {
  
 // Here we determine what happens when Yes is chosen in the previous step.  In this case it pushes the lowercase array into the mix.
 if (lowerCase == "Yes"){
-  for(var i = 0; i <lowerCaseArray.length; i++){
+  for(var i = 0; i < lowerCaseArray.length; i++){
     possibleCharacters.push(lowerCaseArray[i])
   }
 }
 
 // Pushes the upperCaseArray into the mix.
 if (upperCase == "Yes"){
-  for(var i = 0; i <upperCaseArray.length; i++){
+  for(var i = 0; i < upperCaseArray.length; i++){
     possibleCharacters.push(upperCaseArray[i])
   }
 }
 
 // Pushes the numericArray into the mix.
 if (numeric == "Yes"){
-  for(var i = 0; i <numericArray.length; i++){
+  for(var i = 0; i < numericArray.length; i++){
     possibleCharacters.push(numericArray[i])
   }
 }
 
 // Pushes the specialCharacterArray into the mix.
 if (specialCharacters == "Yes"){
-  for(var i = 0; i <specialCharacterArray.length; i++){
+  for(var i = 0; i < specialCharacterArray.length; i++){
     possibleCharacters.push(specialCharacterArray[i])
   }
 }
-
 var criteria = "";
 var max = possibleCharacters.length;
-for(var i = 0; i < width; i++){
-  var pick = Math.floor(math.random()*max - 0 + 1) + 0;
+for(var i =0; i < width; i++){
+  var pick = Math.floor(Math.random()*max - 0 +1) +0;
   var choice = possibleCharacters[pick];
   criteria = criteria + choice;
 }
