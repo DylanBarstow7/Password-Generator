@@ -15,21 +15,40 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+function generatePassword() 
+  var possibleCharacters = []
+  var input = false
+  var length = prompt("Choose a password length between 8 and 128 characters.");
+  while(length < 8 || length > 128){
+    alert("Password length must be between 8 and 128 characters.");
+    length = prompt("Choose a password length between 8 and 128 characters.");
+  }
+  var lowerCase = prompt("Do you want lowercase letters in your password? Type: Yes or No");
+  while (input === false){
+    if (lowerCase === "Yes" || lowerCase === "No"){
+      input = true
+    }
+    else{
+      alert("Please Type: Yes or No");
+      lowerCase = prompt("Do you want lowercase letters in your password? Type: Yes or No");
+    }
+  }
+  input = false
+  var upperCase = prompt("Do you want uppercase letters in your password? Type: Yes or No");
+    while (input === false){
+      if (upperCase === "Yes" || upperCase === "No"){
+        input = true
+      }
+      else{
+        alert("Please Type: Yes or No");
+        upperCase = prompt("Do you want uppercase letters in your password? Type: Yes or No")
+    }
+  }
+  input = false
 
-
-
-
-// create an array
-function generatePassword = []{
- var options
- var password = [console.log(math.random())];
- var possibleCharacters = [];
- var guaranteedCharacters = [];
-}
-
-function getRandomIntInclusive(min,max){
+  
+    
+    function getRandomIntInclusive(min,max){
   min = math.ceil(min);
   max = math.floor(max);
   return math.floor(Math.random() * (max - min + 1) + min);
@@ -43,4 +62,5 @@ function getRandomItems(arr){
   console.log(specialCharacters[getRandomIntInclusive(0, specialCharacters.length - 1)]);
 
 }
-
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
