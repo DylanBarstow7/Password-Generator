@@ -1,9 +1,11 @@
 // Assignment Code
+
+// created variables for each special character
 var generateBtn = document.querySelector("#generate");
-var specialCharacters = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "_", "-","+", ".", "/", ":", ";", "<", "=",">", "?"]
-var lowerCase = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-var numeric = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+var specialCharacterArray = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "_", "-","+", ".", "/", ":", ";", "<", "=",">", "?"]
+var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+var numericArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
 // Write password to the #password input
@@ -15,14 +17,21 @@ function writePassword() {
 
 }
 
-function generatePassword() 
+
+// This code generates our password criteria, creating four pop up Yes or No questions that determine what characters will be generated in the password.
+function generatePassword() {
   var possibleCharacters = []
   var input = false
-  var length = prompt("Choose a password length between 8 and 128 characters.");
-  while(length < 8 || length > 128){
+  // question 1: how many characters?
+  var width = prompt("Choose a password length between 8 and 128 characters.");
+  // must be between 8 and 128 characters
+  while(width < 8 || width > 128){
+    // if not within range, this alert pops up
     alert("Password length must be between 8 and 128 characters.");
-    length = prompt("Choose a password length between 8 and 128 characters.");
+    // prompting this question to be resent.
+    width = prompt("Choose a password length between 8 and 128 characters.");
   }
+  // this process is continued for the rest of the character types
   var lowerCase = prompt("Do you want lowercase letters in your password? Type: Yes or No");
   while (input === false){
     if (lowerCase === "Yes" || lowerCase === "No"){
@@ -41,26 +50,75 @@ function generatePassword()
       }
       else{
         alert("Please Type: Yes or No");
-        upperCase = prompt("Do you want uppercase letters in your password? Type: Yes or No")
+        upperCase = prompt("Do you want uppercase letters in your password? Type: Yes or No");
     }
   }
   input = false
+  var numeric = prompt("Do you want numeric values in your password? Type: Yes or No");
+    while (input === false){
+      if (numeric === "Yes" || numeric === "No"){
+        input = true
+      }
+      else{
+        alert("Please Type: Yes or No");
+        numeric = prompt("Do you want numeric values in your password? Type: Yes or No");
+    }
+  }
+  input = false
+  var specialCharacters = prompt("Do you want special characters in your password? Type: Yes or No");
+  while (input === false){
+    if (specialCharacters === "Yes" || specialCharacters === "No"){
+      input = true
+    }
+    else{
+      alert("Please Type: Yes or No");
+      specialCharacters = prompt("Do you want special characters in your password? Type: Yes or No")
+    }
+  }
 
-  
-    
-    function getRandomIntInclusive(min,max){
-  min = math.ceil(min);
-  max = math.floor(max);
-  return math.floor(Math.random() * (max - min + 1) + min);
+ 
+// Here we determine what happens when Yes is chosen in the previous step.  In this case it pushes the lowercase array into the mix.
+if (lowerCase == "Yes"){
+  for(var i = 0; i <lowerCaseArray.length; i++){
+    possibleCharacters.push(lowerCaseArray[i])
+  }
+}
+
+// Pushes the upperCaseArray into the mix.
+if (upperCase == "Yes"){
+  for(var i = 0; i <upperCaseArray.length; i++){
+    possibleCharacters.push(upperCaseArray[i])
+  }
+}
+
+// Pushes the numericArray into the mix.
+if (numeric == "Yes"){
+  for(var i = 0; i <numericArray.length; i++){
+    possibleCharacters.push(numericArray[i])
+  }
+}
+
+// Pushes the specialCharacterArray into the mix.
+if (specialCharacters == "Yes"){
+  for(var i = 0; i <specialCharacterArray.length; i++){
+    possibleCharacters.push(specialCharacterArray[i])
+  }
+}
+
+var criteria = "";
+var max = possibleCharacters.length;
+for(var i = 0; i < width; i++){
+  var pick = Math.floor(math.random()*max - 0 + 1) + 0;
+  var choice = possibleCharacters[pick];
+  criteria = criteria + choice;
+}
+
+
+debugger;
+console.log(criteria)
+return criteria;
 
 }
 
-function getRandomItems(arr){
-  return arr [getRandomIntInclusive(0, arr.length - 1)]
-
-
-  console.log(specialCharacters[getRandomIntInclusive(0, specialCharacters.length - 1)]);
-
-}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
