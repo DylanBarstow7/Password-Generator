@@ -76,7 +76,7 @@ function generatePassword() {
     }
   }
 
- 
+
 // Here we determine what happens when Yes is chosen in the previous step.  In this case it pushes the lowercase array into the mix.
 if (lowerCase == "Yes"){
   for(var i = 0; i < lowerCaseArray.length; i++){
@@ -104,11 +104,17 @@ if (specialCharacters == "Yes"){
     possibleCharacters.push(specialCharacterArray[i])
   }
 }
+// This formula creates a new variable which searches the chosen "possibleCharacters" named criteria
 var criteria = "";
+// This line ensures we dont go over the maximum length
 var max = possibleCharacters.length;
+// This ensures we done go over the given number of digits for the password
 for(var i =0; i < width; i++){
+// This line begins our randomization to choose which array to pull from
   var pick = Math.floor(Math.random()*max - 0 +1) +0;
+// New variable chosen with the randomizer
   var choice = possibleCharacters[pick];
+// Adding the Randomized option to the "Blank" criteria
   criteria = criteria + choice;
 }
 
